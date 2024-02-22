@@ -1,0 +1,62 @@
+ _____________
+/ ORGANIZARE /
+'''''''''''''
+
+In cadrul temei am simulat o problema de tipul MPMC. Pentru retinerea datelor din marketplace am
+folosit o varietate de dictionare si liste ce pot fi apelate din functiile clasei. Pentru asigurarea
+rularii fara race conditions am utilizat un lock acolo unde era necesara modificare unor variabile ce
+ar fi putut fi modificate dim mai multe threaduri simultan. Deoarece unele dintre structurile folosite
+pot fi modificate atat de catre consumeri cat si de produceri am optat pentru utilizarea unui lock
+comun.
+
+In ceea ce priveste limita de produse pentru fiecare producator, am considerat ca un producator poate
+avea publicate la un moment de timp maxim numarul de produse al marketplaceului. Am considerat ca numarul
+corespunzator unui producator va scadea doar in cazul in care un consumator a achizitionat unul din
+produsele sale. Daca numarul ar fi modificat la adaugarea in cos a unui produs, in cazul in care un
+consumator elimina un produs din cos, acesta este din nou adaugat in lista de produce a marketului,
+iar numarul corespunzator unui producator ar fi putut ajunge sa depaseasca limita data.
+
+De asemenea, am implementat o functie aditionala pentru maparea numelor consumerilor cu cartul pe care il detin
+pentru realizarea mesajelor de cumparare la realizarea comenzii.
+
+Testele unitare implementate verifica functionalitatiile clasei marketplace prin verificarea interna
+a atributelor sale (cum ar fi: numarul de produce de un anumit tip existente in market sau intr-un cos de
+cumparaturi) si a valorilor returnate de catre functii. Din cauza unor erori de import intampinate la
+uploadul arhivei pe moodle am apelat la creerea unei clase TCoffee de testare.
+
+In cadrul loggarii intrarilor si iesirilor din functii am optat pentru mesaje inntr-un limbaj mai natural
+pentru o intelegere mai usoara a contextului la citirea fisierelor de logging.
+
+
+/* Consideri că tema este utilă? */
+
+Consider ca tema a fost utila atat din punct de vedere a aprofundarii unor concepte de threading
+cat si pentru invatarea si intelegerea limbajului de programare, cu care personal nu aveam
+experienta anteriora (exceptand cele 3 laboratoare). De asemenea consider ca cerinta de implementare
+a unor teste unitare este de mare interes, fiind folosite si in productie.
+
+/* Consideri implementarea naivă, eficientă, se putea mai bine? */
+
+Consider ca exista posibilitatea de aducere imbunatatiri din punct de vedere a vitezei de executie,
+deoarece implementarea actuala se foloseste de un singur lock. S-ar putea aduce mbunatatiri printr-o
+separare mai mare a variabilelor de stocare ce tin strict de consumatori / producatori, pentru
+ca acestia sa nu fie nevoiti sa astepte unul dupa altul.
+
+ _______________
+/ IMPLEMENTARE /
+'''''''''''''''
+
+Am realizat integrarea intregului enunt in solutia prezentata.
+
+Dificultatile principale intampinate au constat in intelegerea sintaxei de python, cu care nu aveam
+prea multa experienta, si a intelegerii datelor de input primite si cum acestea pot fi folosite,
+apelate etc, cum este facuta parsarea datelor de intrare si trimiterea lor catre clasele utilizate.
+
+Printre lucrurile descoperite in cadrul realizarii temei, cele mai interesante mi s-au parut invatarea
+creeri si folosirii testelor unitare pentru testarea codului, cat si utilizarea fisierelor de logging.
+
+ ____________________
+/ RESURSE UTILIZATE /
+''''''''''''''''''''
+
+Am utilizat resursele puse la dispozitie in cadrul temei (linkuri oferite in enunturi)
